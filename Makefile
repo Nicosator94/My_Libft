@@ -2,37 +2,38 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
-SRC_CHARA = ft_isalpha.c \
-			ft_isdigit.c \
-			ft_isalnum.c \
-			ft_isascii.c \
-			ft_isprint.c \
-			ft_toupper.c \
-			ft_tolower.c
+SRC_CHARA = chara/ft_isalpha.c \
+			chara/ft_isdigit.c \
+			chara/ft_isalnum.c \
+			chara/ft_isascii.c \
+			chara/ft_isprint.c \
+			chara/ft_toupper.c \
+			chara/ft_tolower.c
 
-SRC_STRING = ft_atoi.c \
-			ft_strlen.c \
-			ft_strlcpy.c \
-			ft_strlcat.c \
-			ft_strchr.c \
-			ft_strrchr.c \
-			ft_strncmp.c \
-			ft_strnstr.c \
-			ft_striteri.c \
-			ft_memset.c \
-			ft_bzero.c \
-			ft_memcpy.c \
-			ft_memmove.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_calloc.c \
-			ft_strdup.c \
-			ft_substr.c \
-			ft_strjoin.c \
-			ft_strtrim.c \
-			ft_split.c \
-			ft_itoa.c \
-			ft_strmapi.c \
+SRC_STRING = string/ft_atoi.c \
+			string/ft_strlen.c \
+			string/ft_strlcpy.c \
+			string/ft_strlcat.c \
+			string/ft_strchr.c \
+			string/ft_strrchr.c \
+			string/ft_strncmp.c \
+			string/ft_strnstr.c \
+			string/ft_striteri.c \
+			string/ft_strdup.c \
+			string/ft_substr.c \
+			string/ft_strjoin.c \
+			string/ft_strtrim.c \
+			string/ft_split.c \
+			string/ft_itoa.c \
+			string/ft_strmapi.c
+
+SRC_MEMORY = memory/ft_bzero.c \
+			memory/ft_calloc.c \
+			memory/ft_memchr.c \
+			memory/ft_memcmp.c \
+			memory/ft_memcpy.c \
+			memory/ft_memmove.c \
+			memory/ft_memset.c
 
 SRC_WRITE = write/ft_putchar_fd.c \
 			write/ft_putstr_fd.c \
@@ -49,13 +50,14 @@ SRC_LIST = list/ft_lstnew.c \
 			list/ft_lstiter.c \
 			list/ft_lstmap.c
 
-SRC_PRINTF = ft_printf.c \
-			ft_conv_hexa.c \
-			ft_hexa_address.c \
-			ft_unsigned_itoa.c
+SRC_PRINTF = printf/ft_printf.c \
+			printf/ft_conv_hexa.c \
+			printf/ft_hexa_address.c \
+			printf/ft_unsigned_itoa.c
 
 ALL_OBJ = $(SRC_CHARA:.c=.o) \
 			$(SRC_STRING:.c=.o) \
+			$(SRC_MEMORY:.c=.o) \
 			$(SRC_WRITE:.c=.o) \
 			$(SRC_LIST:.c=.o) \
 			$(SRC_PRINTF:.c=.o)
