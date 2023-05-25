@@ -17,12 +17,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
 // Character
 
 int		ft_isalpha(int c);
@@ -71,6 +65,12 @@ void	ft_putnbr_fd(int n, int fd);
 
 // List
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -88,5 +88,17 @@ char	*ft_unsigned_itoa(unsigned int n);
 char	*ft_conv_hexa(unsigned int nb, char *hexa);
 char	*ft_hexa_address(unsigned long nb, char *hexa);
 int		tempo(int temp, char *s);
+
+// Gnl
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+char	*get_next_line(int fd);
+int		check(char *s);
+char	*last_line(char *temp, int len_of_temp);
+char	*simple_line(char *temp, int len_of_temp);
+char	*new_temp(char *temp, int len_of_read);
 
 #endif

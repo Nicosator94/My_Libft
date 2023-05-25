@@ -55,12 +55,16 @@ SRC_PRINTF = printf/ft_printf.c \
 			printf/ft_hexa_address.c \
 			printf/ft_unsigned_itoa.c
 
+SRC_GNL = gnl/get_next_line.c \
+			gnl/get_next_line_utils.c
+
 ALL_OBJ = $(SRC_CHARA:.c=.o) \
 			$(SRC_STRING:.c=.o) \
 			$(SRC_MEMORY:.c=.o) \
 			$(SRC_WRITE:.c=.o) \
 			$(SRC_LIST:.c=.o) \
-			$(SRC_PRINTF:.c=.o)
+			$(SRC_PRINTF:.c=.o) \
+			$(SRC_GNL:.c=.o)
 
 all : $(NAME)
 
