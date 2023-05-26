@@ -1,62 +1,70 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 NAME = libft.a
 
-SRC_CHARA = chara/ft_isalpha.c \
-			chara/ft_isdigit.c \
-			chara/ft_isalnum.c \
-			chara/ft_isascii.c \
-			chara/ft_isprint.c \
-			chara/ft_toupper.c \
-			chara/ft_tolower.c
+CHARA = chara/
+GNL = gnl/
+LIST = list/
+MEMORY = memory/
+PRINTF = printf/
+STRING = string/
+WRITE = write/
 
-SRC_STRING = string/ft_atoi.c \
-			string/ft_strlen.c \
-			string/ft_strlcpy.c \
-			string/ft_strlcat.c \
-			string/ft_strchr.c \
-			string/ft_strrchr.c \
-			string/ft_strncmp.c \
-			string/ft_strnstr.c \
-			string/ft_striteri.c \
-			string/ft_strdup.c \
-			string/ft_substr.c \
-			string/ft_strjoin.c \
-			string/ft_strtrim.c \
-			string/ft_split.c \
-			string/ft_itoa.c \
-			string/ft_strmapi.c
+SRC_CHARA = $(CHARA)ft_isalpha.c \
+			$(CHARA)ft_isdigit.c \
+			$(CHARA)ft_isalnum.c \
+			$(CHARA)ft_isascii.c \
+			$(CHARA)ft_isprint.c \
+			$(CHARA)ft_toupper.c \
+			$(CHARA)ft_tolower.c
 
-SRC_MEMORY = memory/ft_bzero.c \
-			memory/ft_calloc.c \
-			memory/ft_memchr.c \
-			memory/ft_memcmp.c \
-			memory/ft_memcpy.c \
-			memory/ft_memmove.c \
-			memory/ft_memset.c
+SRC_GNL = $(GNL)get_next_line.c \
+			$(GNL)get_next_line_utils.c
 
-SRC_WRITE = write/ft_putchar_fd.c \
-			write/ft_putstr_fd.c \
-			write/ft_putendl_fd.c \
-			write/ft_putnbr_fd.c
+SRC_LIST = $(LIST)ft_lstnew.c \
+			$(LIST)ft_lstadd_front.c \
+			$(LIST)ft_lstsize.c \
+			$(LIST)ft_lstlast.c \
+			$(LIST)ft_lstadd_back.c \
+			$(LIST)ft_lstdelone.c \
+			$(LIST)ft_lstclear.c \
+			$(LIST)ft_lstiter.c \
+			$(LIST)ft_lstmap.c
 
-SRC_LIST = list/ft_lstnew.c \
-			list/ft_lstadd_front.c \
-			list/ft_lstsize.c \
-			list/ft_lstlast.c \
-			list/ft_lstadd_back.c \
-			list/ft_lstdelone.c \
-			list/ft_lstclear.c \
-			list/ft_lstiter.c \
-			list/ft_lstmap.c
+SRC_MEMORY = $(MEMORY)ft_bzero.c \
+			$(MEMORY)ft_calloc.c \
+			$(MEMORY)ft_memchr.c \
+			$(MEMORY)ft_memcmp.c \
+			$(MEMORY)ft_memcpy.c \
+			$(MEMORY)ft_memmove.c \
+			$(MEMORY)ft_memset.c
 
-SRC_PRINTF = printf/ft_printf.c \
-			printf/ft_conv_hexa.c \
-			printf/ft_hexa_address.c \
-			printf/ft_unsigned_itoa.c
+SRC_PRINTF = $(PRINTF)ft_printf.c \
+			$(PRINTF)ft_conv_hexa.c \
+			$(PRINTF)ft_hexa_address.c \
+			$(PRINTF)ft_unsigned_itoa.c
 
-SRC_GNL = gnl/get_next_line.c \
-			gnl/get_next_line_utils.c
+SRC_STRING = $(STRING)ft_atoi.c \
+			$(STRING)ft_strlen.c \
+			$(STRING)ft_strlcpy.c \
+			$(STRING)ft_strlcat.c \
+			$(STRING)ft_strchr.c \
+			$(STRING)ft_strrchr.c \
+			$(STRING)ft_strncmp.c \
+			$(STRING)ft_strnstr.c \
+			$(STRING)ft_striteri.c \
+			$(STRING)ft_strdup.c \
+			$(STRING)ft_substr.c \
+			$(STRING)ft_strjoin.c \
+			$(STRING)ft_strtrim.c \
+			$(STRING)ft_split.c \
+			$(STRING)ft_itoa.c \
+			$(STRING)ft_strmapi.c
+
+SRC_WRITE = $(WRITE)ft_putchar_fd.c \
+			$(WRITE)ft_putstr_fd.c \
+			$(WRITE)ft_putendl_fd.c \
+			$(WRITE)ft_putnbr_fd.c
 
 ALL_OBJ = $(SRC_CHARA:.c=.o) \
 			$(SRC_STRING:.c=.o) \
@@ -66,19 +74,28 @@ ALL_OBJ = $(SRC_CHARA:.c=.o) \
 			$(SRC_PRINTF:.c=.o) \
 			$(SRC_GNL:.c=.o)
 
-all : $(NAME)
+ALL_DEP = $(SRC_CHARA:.c=.d) \
+			$(SRC_STRING:.c=.d) \
+			$(SRC_MEMORY:.c=.d) \
+			$(SRC_WRITE:.c=.d) \
+			$(SRC_LIST:.c=.d) \
+			$(SRC_PRINTF:.c=.d) \
+			$(SRC_GNL:.c=.d)
 
-$(NAME) : $(ALL_OBJ)
-	ar rcs $(NAME) $(ALL_OBJ)
+all : $(NAME)
+	@echo "c good"
+
+$(NAME) : $(ALL_OBJ) libft.h
+	@ar rcs $(NAME) $(ALL_OBJ)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean :
-	rm -f $(ALL_OBJ)
+	@rm -f $(ALL_OBJ) $(ALL_DEP)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 
